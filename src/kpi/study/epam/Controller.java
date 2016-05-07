@@ -2,9 +2,6 @@ package kpi.study.epam;
 
 import java.util.Scanner;
 
-/**
- * Created by Alex on 4/25/16.
- */
 public class Controller{
     // Constructor
     Model model;
@@ -15,11 +12,12 @@ public class Controller{
         this.view = view;
     }
 
-    public void proccessPlay(){
-        view.printMessage(View.START_GAME);
-        model.rand(0,100);
-
+    public void processPlay(){
         Scanner scanner= new Scanner(System.in);
+        view.printMessage(View.START_GAME);
+        model.setBarriers(GlobalValues.MIN_BARRIER,GlobalValues.MAX_BARRIER);
+        model.rand();
+
         model.addAttempt(attempt(scanner));
         while (model.getRandomValue()!= model.getLastAttempt()){
             if (model.getLastAttempt() < model.getRandomValue()) {
@@ -35,8 +33,9 @@ public class Controller{
         }
         view.printMessage(View.CORRECT_ANSWER);
         view.printMessageAndAttempts(View.ATTEMPTS,model.getAttempts());
-        view.printMessage(View.RIGHT_NUMBER + model.getRandomValue());
+        view.printMessage(new StringBuilder().append(View.RIGHT_NUMBER).append(model.getRandomValue()).toString());
     }
+
     public int attempt(Scanner sc) {
         int attemptValue = inputIntValueWithScanner(sc);
         while (attemptValue < model.getMinValue() || attemptValue > model.getMaxValue()) {

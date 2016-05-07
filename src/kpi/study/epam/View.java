@@ -2,9 +2,7 @@ package kpi.study.epam;
 
 import java.util.List;
 
-/**
- * Created by Alex on 4/25/16.
- */
+
 public class View {
     //Necessary constants
     public static final String START_GAME = "Let's play! I wonna play with u";
@@ -18,6 +16,7 @@ public class View {
     public static final String ATTEMPTS = "Your attempts : ";
     public static final String USER_ATTEMPTS = "Your previous answers: ";
     public static final String RIGHT_NUMBER="Random value was:";
+    public static final String END_GAME="EXIT";
 
     public void printMessage(String message){
         System.out.println(message);
@@ -29,5 +28,12 @@ public class View {
 
     public void printMessageValidRange(String message, int min, int max){
         System.out.println(message + "[" + min + ";" + max + "]");
+    }
+    public void concatAndPrint(String... params){
+        StringBuilder builder=new StringBuilder();
+        for (String v:params){
+            builder.append(v);
+        }
+        printMessage(builder.toString());
     }
 }

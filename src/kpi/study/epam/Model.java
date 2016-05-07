@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Alex on 4/25/16.
+ * Created 4/25/16.
+ * @author Alex
  */
 public class Model {
     private List<Integer> attempts;
@@ -13,17 +14,23 @@ public class Model {
     private int minValue;
     private int maxValue;
 
-    //function that gives us pseudo-random value
-    public int rand(int minValue,int maxValue) {
-        this.minValue=minValue;
-        this.maxValue=maxValue;
-        randomValue = new Random().nextInt(maxValue+1 - minValue)+minValue;//pseudo-random value between [min,max]
+    Model(){
+        randomValue=0;
+        minValue=0;
+        maxValue=0;
         attempts = new LinkedList<>();
-        return randomValue;
+    }
+    //function that gives us pseudo-random value
+    public int rand() {
+        return randomValue = new Random().nextInt(maxValue+1 - minValue)+minValue;//pseudo-random value between [min,max]
     }
     /**
      * the setters and getters block bellow
      * */
+    public void setBarriers(int minValue,int maxValue){
+        this.minValue=minValue;
+        this.maxValue=maxValue;
+    }
     public List<Integer> getAttempts() {
         return attempts;
     }
